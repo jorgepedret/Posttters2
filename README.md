@@ -2,6 +2,13 @@ Posttters2
 ==========
 Local posters of stuff that you love
 
+Installation
+------------
+From your terminal run:
+$ git clone git@github.com:jorgepedret/Posttters2.git
+$ cd Posttters2
+$ node app.js
+
 Stack structure and libraries
 -----------------------------
 
