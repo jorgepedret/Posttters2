@@ -1,3 +1,4 @@
+/* Colors */
 body {
   width: 100%;
   *zoom: 1;
@@ -10,8 +11,6 @@ body:after {
 body:after {
   clear: both;
 }
-/* Colors */
-/* Fonts */
 @font-face {
   font-family: 'ChunkFive';
   src: url("../fonts/Chunkfive-webfont.eot");
@@ -256,22 +255,123 @@ td {
   padding: 0.2em 0;
 }
 input[type=text],
-input[type=email],
 select,
 textarea {
-  padding: 10px;
   border: none;
   -webkit-appearance: none;
-  margin-bottom: 5px;
-  width: 200px;
 }
-input[type=submit] {
+.input-med {
+  width: 410px;
+  padding: 15px 35px 15px 15px;
+}
+.input-large {
+  width: 570px;
+  padding: 15px 35px 15px 15px;
+}
+.input-main {
+  font-family: 'ChunkFive', Verdana, sans-serif;
+  font-size: 24px;
+}
+.input-desc {
+  font-size: 16px;
+  transition: height 0.2s;
+}
+.input-pass {
+  background: #fff url("../img/input-pass.png") 100% 5px no-repeat;
+}
+.input-pass.input-med {
+  background-position: 430px 16px;
+}
+.input-pass.input-med.input-main {
+  background-position: 430px 20px;
+}
+.input-error {
+  background: #fd402d;
+  padding: 10px 15px;
+  color: #fff;
+}
+.control-group {
+  margin-bottom: 20px;
+}
+.control-group > label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-actions {
+  text-align: right;
+}
+.form-poster {
+  *zoom: 1;
+}
+.form-poster:before,
+.form-poster:after {
+  content: "";
+  display: table;
+}
+.form-poster:after {
+  clear: both;
+}
+.form-poster-img {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 460px;
+  margin: 0 10px;
+  *width: 460px -correction;
+  *margin: 0 10px -correction;
+}
+.form-poster-img > img {
+  margin-bottom: 10px;
+}
+.form-poster-info {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 460px;
+  margin: 0 10px;
+  *width: 460px -correction;
+  *margin: 0 10px -correction;
+}
+.poster-image-upload {
+  text-align: right;
+}
+.poster-image-placeholder {
+  border: #fff 15px solid;
+  padding: 15px;
+  background: #8fb6e7;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
+}
+.poster-image-placeholder > h3 {
+  font-size: 24px;
+  margin: 5px;
+}
+.btn {
   background: #2152bf;
   color: #fff;
+  padding: 10px;
   font-size: 16px;
-  padding: 10px 20px;
   border: none;
-  -webkit-appearance: none;
+}
+.btn:hover {
+  background: #4981fd;
+}
+.btn-delete {
+  background: #fd402d;
+}
+.btn-delete:hover {
+  background: #fd5342;
+}
+.btn-submit {
+  background: #fd402d;
+  font-family: 'ChunkFive', Verdana, sans-serif;
+  font-size: 32px;
+  padding: 10px 20px;
+}
+.wrap {
+  display: block;
+  margin: 0 10px;
 }
 p {
   margin: 0;
@@ -294,12 +394,28 @@ h3 {
 h2 {
   font-size: 32px;
 }
+hgroup h2 {
+  display: inline;
+  margin: 0;
+}
+hgroup h2 + h3 {
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 13px;
+  display: inline;
+  margin: 0;
+  padding-left: 10px;
+}
+.page-title {
+  margin-bottom: 30px;
+}
 body {
   background: url("../img/dark-wood.png") repeat;
 }
 #wrapper {
   width: 960px;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 #main {
   *zoom: 1;
@@ -399,6 +515,9 @@ body {
   padding: 0;
   list-style: none;
 }
+.posters-list > li:nth-child(3n+1) {
+  clear: both;
+}
 .poster-excerpt {
   display: inline;
   float: left;
@@ -419,6 +538,89 @@ body {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 0;
+}
+.poster-img {
+  border: #fff solid 15px;
+}
+.poster-img-large {
+  max-width: 590px;
+}
+.poster-img-med {
+  max-width: 430px;
+}
+.poster-img-small {
+  max-width: 270px;
+}
+.poster-single {
+  *zoom: 1;
+}
+.poster-single:before,
+.poster-single:after {
+  content: "";
+  display: table;
+}
+.poster-single:after {
+  clear: both;
+}
+.poster-single-title {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 940px;
+  margin: 0 10px;
+  *width: 940px -correction;
+  *margin: 0 10px -correction;
+  margin-bottom: 20px;
+}
+.poster-single-title > h2 {
+  margin-bottom: 10px;
+}
+.poster-single-title > p {
+  font-size: 16px;
+  line-height: 1.25em;
+}
+.poster-single-image {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 620px;
+  margin: 0 10px;
+  *width: 620px -correction;
+  *margin: 0 10px -correction;
+}
+.poster-single-info {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 300px;
+  margin: 0 10px;
+  *width: 300px -correction;
+  *margin: 0 10px -correction;
+}
+.poster-single-image,
+.poster-single-info {
+  margin-bottom: 40px;
+}
+.poster-comments {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 620px;
+  margin: 0 10px;
+  *width: 620px -correction;
+  *margin: 0 10px -correction;
+}
+.poster-comments > header {
+  margin-bottom: 20px;
+}
+.poster-comments > header h3 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.poster-comments > header h4 {
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 16px;
 }
 @media only screen and (min-width: 35em) {
 }

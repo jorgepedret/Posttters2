@@ -44,11 +44,28 @@ define([
     poster_new: function () {
       var that = this;
       require([
+        "models/poster",
         "views/posters/new"
-      ], function (NewPosterView) {
-        var newPostersView = new NewPosterView();
-        var html = newPostersView.render().el
+      ], function (Poster, NewPosterView) {
+        var poster = new Poster();
+        var newPosterView = new NewPosterView({model:poster});
+        var html = newPosterView.render().el
         that.$el.html(html);
+      });
+    },
+    poster_edit: function (id) {
+      var that = this;
+      require([
+        "models/poster",
+        "views/posters/edit"
+      ], function (Poster, EditPosterView) {
+        var poster = new Poster({_id:id});
+        var editPosterView = new EditPosterView({
+          model:poster
+        });
+        var html = editPosterView.render().el
+        that.$el.html(html);
+        poster.fetch();
       });
     },
     poster_view: function (id) {
@@ -62,6 +79,21 @@ define([
           model : poster
         });
         var html = singlePosterView.render().el
+        that.$el.html(html);
+        poster.fetch();
+      });
+    },
+    poster_remove: function (id) {
+      var that = this;
+      require([
+        "models/poster",
+        "views/posters/remove"
+      ], function (Poster, PosterRemoveView) {
+        var poster = new Poster({_id: id});
+        var posterRemoveView = new PosterRemoveView({
+          model : poster
+        });
+        var html = posterRemoveView.render().el
         that.$el.html(html);
         poster.fetch();
       });

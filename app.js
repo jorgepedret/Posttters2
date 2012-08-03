@@ -4,13 +4,22 @@ var application_root = __dirname,
   mongoose = require("mongoose"),
   fs = require("fs"),
   _ = require("underscore"),
-  slug = require("slugs");
+  slug = require("slugs"),
+  util = require("util"),
+  http = require("http"),
+  formidable = require("formidable"),
+  format = util.format;
 
 var app = express.createServer();
 
 var getTemplate = function (template) {
   return fs.readFileSync(path.join(application_root, "views") + "/" + template + '.html', 'utf8');
 };
+
+var getExtension = function (filename) {
+    var ext = path.extname(filename||'').split('.');
+    return ext[ext.length - 1];
+}
 
 // model
 mongoose.connect('mongodb://localhost/posttters3');
@@ -53,8 +62,12 @@ var Comments = mongoose.model('Comments', new mongoose.Schema({
 var Poster = mongoose.model('Poster', new mongoose.Schema({
   author: mongoose.Schema.ObjectId,
   date: Date,
-  content: String,
+  event_dates: String,
   title: String,
+  content: String,
+  address: String,
+  price: String,
+  image: String,
   status: String,
   slug: String,
   modified: Date,
@@ -66,7 +79,7 @@ var Poster = mongoose.model('Poster', new mongoose.Schema({
 }));
 
 app.configure(function(){
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({uploadDir:application_root+'/upload'}));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(application_root, "public")));
@@ -112,16 +125,17 @@ app.get('/api/posters/:id', function(req, res){
 
 app.put('/api/posters/:id', function(req, res){
   console.log("Updating poster");
-  return Poster.findById(req.params.id, function(err, poster) {
-    poster = {
-      title : req.body.title,
-      author : req.body.author_id,
-      date : new Date(),
-      content : req.body.content,
-      status : "published",
-      slug : slug(req.body.title),
-      modified : new Date()
-    };
+  return Poster.findOne({_id:req.params.id}, function(err, poster) {
+    
+    poster.title = req.body.title;
+    poster.author = req.body.author_id;
+    poster.date = new Date();
+    poster.content = req.body.content;
+    poster.status = "published";
+    poster.slug = slug(req.body.title);
+    poster.modified = new Date();
+    poster.image = req.body.image;
+    poster.address = req.body.address;
 
     return poster.save(function(err) {
       if (!err) {
@@ -132,29 +146,46 @@ app.put('/api/posters/:id', function(req, res){
   });
 });
 
-app.post('/api/posters', function(req, res){
-  var poster;
-  console.log("Creating poster");
-  poster = new Poster({
-    title: req.body.title,
-    author: req.body.author_id,
-    date: new Date(),
-    content: req.body.content,
-    status: "published",
-    slug: slug(req.body.title),
-    modified: new Date()
-  });
-  poster.save(function(err) {
-    if (!err) {
-      return console.log("created");
+app.post('/api/posters', function(req, res, next){
+  var poster,
+    image,
+    image_path = application_root + '/public/img/posters/';
+  if (req.files) {
+    console.log("Uploading poster image");
+    image = req.files.image || null;
+    if (image !== null) {
+      console.log(image);
+      fs.rename(image.path, image_path + image.name, function (err) {
+        var new_file_path = image_path + image.name;
+        res.send(new_file_path.replace(application_root + '/public', ""));
+      });
+    } else {
+      res.send("Invalid image upload", 415);
     }
-  });
-  return res.send(poster);
+  } else {
+    console.log("Creating poster");
+    poster = new Poster({
+      title: req.body.title,
+      author: req.body.author_id,
+      date: new Date(),
+      content: req.body.content,
+      status: "published",
+      slug: slug(req.body.title),
+      modified: new Date(),
+      image: req.body.image,
+      address: req.body.address
+    });
+    poster.save(function(err) {
+      if (!err) {
+        return console.log("created");
+      }
+    });
+    return res.send(poster);
+  }
 });
 
 app.delete('/api/posters/:id', function(req, res){
   console.log("Deleting poster");
-  console.log(req.params);
   return Poster.findById(req.params.id, function(err, poster) {
     console.log("Poster: ", poster);
     if (poster !== null) {

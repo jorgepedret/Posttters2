@@ -1,4 +1,92 @@
-<h2 class="poster-excerpt-title"><%= title %></h2>
-<img src="/img/sample-poster-med.jpg" alt="<%= title %>">
-<p><%= content %></p>
-<p><a href="#" class="delete">Delete</a></p>
+<header class="poster-single-title">
+  <h2><%= title %></h2>
+  <p><%= content %></p>
+</header>
+<section class="poster-single-image">
+  <img src="<%= image %>" alt="<%= title %>" class="poster-img poster-img-large" />
+</section>
+<section class="poster-single-info">
+  <section class="poster-dates">
+    <ol>
+      <li>
+        <span class="month">May</span>
+        <span class="day">15th</span>
+        <span class="year">2012</span>
+        <span class="time">9:00am - 5:00pm</span>
+      </li>
+      <li>
+        <span class="month">JUN</span>
+        <span class="day">15th</span>
+        <span class="year">2012</span>
+        <span class="time">9:00am - 5:00pm</span>
+      </li>
+      <li>
+        <span class="month">DEC</span>
+        <span class="day">15th</span>
+        <span class="year">2012</span>
+        <span class="time">9:00am - 5:00pm</span>
+      </li>
+    </ol>
+  </section>
+  <section class="poster-location">
+    <img src="/img/map-placeholder.jpg" alt="Map Placeholder" class="poster-img" />
+    <address>1200 West Georgia Str. Vancouver, V6E 4R2</address>
+  </section>
+  <section class="poster-price">
+    <span class="price">$45</span>
+    <p class="price-comments">Tickets are $45.00 per person and include wine samples, live entertainment, and, of course, plenty of pork.</p>
+  </section>
+  <section class="poster-tags">
+    <header>
+      <h4>Tags</h4>
+    </header>
+    <div class="body">
+      <a href="#">Outdoors</a>
+      <a href="#">Wine</a>
+      <a href="#">Winery</a>
+      <a href="#">Food</a>
+    </div>
+  </section>
+  <aside class="sponsor-ad">
+    <img src="/img/ad-placeholder.jpg" alt="Ad Placeholder" />
+  </aside>
+</section>
+<section class="poster-comments">
+  <header>
+    <hgroup>
+      <h3>Any comments about this poster?</h3>
+      <h4>Let the poster publisher know what you think</h4>
+    </hgroup>
+  </header>
+  <form class="comments-form">
+    <div class="control-group">
+      <textarea class="input-large" name="comment" id="comment" placeholder="Your comment or question..."></textarea>
+    </div>
+    <footer class="form-actions">
+      <input type="submit" class="btn" value="Send Comment" />
+    </footer>
+  </form>
+  <ol class="commentlist">
+    <li class="comment even thread-even depth-1">
+      <a name="comment-17289"></a>
+      <div id="li-comment-17289" class="comment-container">
+        <div class="avatar">
+          <img alt="" src="http://0.gravatar.com/avatar/a1c1225be8d547f7eee7fe94e8a3f7ac?s=40&amp;d=&amp;r=G" class="photo avatar avatar-40 photo grav-hashed grav-hijack" height="40" width="40" id="grav-a1c1225be8d547f7eee7fe94e8a3f7ac-0"/>
+        </div>
+        <div class="comment-head">
+          <span class="name">Matth</span>
+          <span class="date">August 3, 2011 at 4:43 pm</span>
+          <span class="perma"><a href="http://jorgepedret.com/web-development/placeholder-text-for-gravity-form-input-elements/comment-page-1/#comment-17289" title="Direct link to this comment">#</a></span>
+          <span class="edit"></span>
+        </div><!-- /.comment-head -->
+        <div class="comment-entry" id="comment-17289">
+          <p>Jorge, you are a genius!</p>
+          <p>Your solution is brilliant. You just saved me a LOT of time. Thank you,  Matth</p>
+            <div class="reply">
+              
+            </div><!-- /.reply -->
+        </div><!-- /comment-entry -->
+      </div><!-- /.comment-container -->
+    </li>
+  </ol>
+</section>

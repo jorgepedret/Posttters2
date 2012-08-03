@@ -12,7 +12,7 @@ define([
     template: _.template(posterTemplate),
 
     events: {
-      "click .delete": "eliminar"
+      
     },
 
     initialize: function() {
@@ -21,18 +21,12 @@ define([
     },
 
     render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      //console.log(this.model.serialize());
+      this.$el.html(this.template(this.model.serialize()));
       return this;
     },
-
-    eliminar: function () {
-      console.log("PosterView.eliminar()");
-      console.log("View: ", this.model.attributes);
-      this.model.eliminar();
-    },
-
     remove: function () {
-      this.$el.remove();
+      this.remove();
     }
   });
   return PosterView;

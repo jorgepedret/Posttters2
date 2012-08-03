@@ -1,8 +1,10 @@
 <figure>
-	<a href="#posters/<%= _id %>"><img src="/img/sample-poster-med.jpg" alt="<%= title %>"></a>
+	<a href="#posters/<%= _id %>"><img src="<%= image %>" class="poster-img poster-img-small" alt="<%= title %>"></a>
 	<figcaption>
 		<h3 class="poster-excerpt-title"><a href="#posters/<%= _id %>"><%= title %></a></h3>
-		<p><%= content %></p>
-		<p><a href="#" class="delete">Delete</a></p>
+		<p><%= date %></p>
+		<p><%= excerpt %></p>
+		<p><%= address %></p>
+		<p><a href="#posters/<%= _id %>/remove" class="delete">Delete</a> <a href="#posters/<%= _id %>/edit" class="edit">Edit</a></p>
 	</figcaption>
 </figure>

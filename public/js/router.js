@@ -31,10 +31,10 @@ define([
       this.appview.poster_new();
     },
     poster_edit: function (id) {
-      console.log("Poster Edit");
+      this.appview.poster_edit(id);
     },
     poster_remove: function (id) {
-      //this.appview.poster_remove(id);
+      this.appview.poster_remove(id);
     },
     login: function () {
       this.appview.login();

@@ -1,0 +1,43 @@
+column-width = 60px
+gutter-width = 20px
+columns = 12
+
+_gridsystem-width = (column-width + gutter-width) * columns
+
+// Set @total-width to 100% for a fluid layout
+total-width = _gridsystem-width
+
+min-width = 960
+correction = (((0.5 / min-width) * 100) * 1%)
+
+clearfix()
+  *zoom:1
+  &:before,
+  &:after
+    content:""
+    display:table
+  &:after
+    clear:both
+
+body
+  width 100%
+  clearfix()
+
+row(columns = columns)
+  display block
+  width total-width * ((gutter-width + _gridsystem-width ) / _gridsystem-width)
+  margin 0 total-width * (((gutter-width * 0.5) / _gridsystem-width ) * - 1)
+  *width total-width * ((gutter-width + _gridsystem-width ) / _gridsystem-width)-correction
+  *margin 0 total-width * (((gutter-width * 0.5) / _gridsystem-width ) * - 1)-correction
+
+column(x, columns = columns)
+  display inline
+  float left
+  overflow hidden
+  width total-width * ((((gutter-width + column-width ) * x) - gutter-width) / _gridsystem-width)
+  margin 0 total-width * ( (gutter-width * 0.5) / _gridsystem-width)
+  *width total-width * ((((gutter-width + column-width ) * x) - gutter-width) / _gridsystem-width)-correction
+  *margin 0 total-width * ( (gutter-width * 0.5) / _gridsystem-width)-correction
+
+offset(offset = 1)
+  margin-left total-width*(((gutter-width+column-width)*offset + (gutter-width*0.5))/_gridsystem-width)

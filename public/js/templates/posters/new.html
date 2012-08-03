@@ -1,6 +1,47 @@
-<h2>Publish a new Poster</h2>
-<form>
-	<input type="text" name="title" id="poster_title" placeholder="Title" /><br />
-	<textarea name="content" id="poster_content" placeholder="Content"></textarea><br />
-	<input type="submit" value="Publish" />
+<header class="wrap page-title">
+  <hgroup>
+    <h2>Publish a new Poster!</h2>
+    <h3>and help spread out your event to the masses</h3>
+  </hgroup>
+</header>
+<form class="form-poster" enctype="multipart/form-data" method="post">
+  <fieldset class="form-poster-img">
+    <!-- <img src="/img/sample-poster-m.jpg" class="poster-img poster-img-med" /> -->
+    <div class="poster-image-placeholder">
+      <h3>Upload Your Poster Image</h3>
+      <p>Min width: 960px &mdash; Valid formats: jpg, jpeg, png</p>
+    </div>
+    <div class="poster-image-upload">
+      <input type="button" class="btn" id="poster_image_btn" value="Find Image..." />
+    </div>
+    <input type="hidden" name="image_path" id="poster_image_path" value="" />
+  </fieldset>
+  <fieldset class="form-poster-info">
+    <div class="control-group">
+      <input type="text" name="title" id="poster_title" class="input-med input-main" placeholder="Your Poster's Title" />
+      <!-- <div class="input-error">Yo! What's your poster's title?</div> -->
+    </div>
+    <div class="control-group">
+      <textarea name="content" id="poster_content" class="input-med input-desc" placeholder="Poster Details"></textarea>
+    </div>
+    <div class="control-group">
+      <label for="poster_event_dates">Dates:</label>
+      <input type="text" name="dates" id="poster_event_dates" class="input-med" />
+    </div>
+    <div class="control-group">
+      <label for="poster_address">Location:</label>
+      <input type="text" name="address" id="poster_address" class="input-med" placeholder="What is your event's location?" />
+    </div>
+    <div class="control-group">
+      <label for="poster_price">Price:</label>
+      <input type="text" name="price" id="poster_price" class="input-med" placeholder="How much does it cost to attend your event?" />
+    </div>
+    <div class="control-group">
+      <label for="poster_tags">Tags:</label>
+      <input type="text" name="tags" id="poster_tags" class="input-med" placeholder="Enter descriptive tags to help other people find your event" />
+    </div>
+  </fieldset>
+  <footer class="wrap form-actions">
+    <input type="submit" class="btn btn-submit" value="Publish it!" />
+  </footer>
 </form>

@@ -8,9 +8,15 @@ require.config({
     underscore: 'libs/underscore/underscore-min',
     backbone: 'libs/backbone/backbone-optamd3-min',
     text: 'libs/require/text',
-    router: 'router'
-  }
+    router: 'router',
 
+    ajaxupload: 'libs/jquery/ajaxupload',
+    autoresize: 'libs/jquery/autoresize',
+    textchange: 'libs/jquery/textchange'
+  },
+  shim: {
+    'autoresize': ['jquery', 'textchange']
+  }
 });
 
 require([

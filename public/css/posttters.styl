@@ -1,47 +1,3 @@
-column-width = 60px
-gutter-width = 20px
-columns = 12
-
-_gridsystem-width = (column-width + gutter-width) * columns
-
-// Set @total-width to 100% for a fluid layout
-total-width = _gridsystem-width
-
-min-width = 960
-correction = (((0.5 / min-width) * 100) * 1%)
-
-clearfix()
-	*zoom:1
-	&:before,
-	&:after
-		content:""
-		display:table
-	&:after
-		clear:both
-
-body
-	width 100%
-	clearfix()
-
-row(columns = columns)
-	display block
-	width total-width * ((gutter-width + _gridsystem-width ) / _gridsystem-width)
-	margin 0 total-width * (((gutter-width * 0.5) / _gridsystem-width ) * - 1)
-	*width total-width * ((gutter-width + _gridsystem-width ) / _gridsystem-width)-correction
-	*margin 0 total-width * (((gutter-width * 0.5) / _gridsystem-width ) * - 1)-correction
-
-column(x, columns = columns)
-	display inline
-	float left
-	overflow hidden
-	width total-width * ((((gutter-width + column-width ) * x) - gutter-width) / _gridsystem-width)
-	margin 0 total-width * ( (gutter-width * 0.5) / _gridsystem-width)
-	*width total-width * ((((gutter-width + column-width ) * x) - gutter-width) / _gridsystem-width)-correction
-	*margin 0 total-width * ( (gutter-width * 0.5) / _gridsystem-width)-correction
-
-offset(offset = 1)
-	margin-left total-width*(((gutter-width+column-width)*offset + (gutter-width*0.5))/_gridsystem-width)
-
 /* Colors */
 $light-blue = #8fb6e7;
 $bright-blue = #2152bf;
@@ -49,196 +5,195 @@ $accent-blue = #4981fd;
 $red-logo = #fd402d;
 $light-grey = #d9d9d9;
 
-/* Fonts */
-@font-face {
-	font-family: 'ChunkFive';
-	src: url('../fonts/Chunkfive-webfont.eot');
-	src: url('../fonts/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('../fonts/Chunkfive-webfont.woff') format('woff'),
-		 url('../fonts/Chunkfive-webfont.ttf') format('truetype'),
-		 url('../fonts/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-type-heading()
-	font-family: 'ChunkFive', Verdana, sans-serif;
+@import "partials/grid";
+@import "partials/typography";
+@import "partials/reset";
+@import "partials/forms";
+@import "partials/buttons";
 
-type-basic()
-	font-family: Helvetica, sans-serif;
-	font-weight: 100;
-
-article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary { display: block }
-audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
-audio:not([controls]) { display: none }
-[hidden] { display: none }
-html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-html, button, input, select, textarea { font-family: sans-serif; color: $light-grey; type-basic(); }
-button, input, select, textarea { color: #444; }
-body { margin: 0; font-size: 13px; line-height: 1.4; }
-a { color: $light-blue; text-decoration: none; }
-a:hover { color: #fff }
-abbr[title] { border-bottom: 1px dotted }
-b, strong { font-weight: bold }
-blockquote { margin: 1em 40px }
-dfn { font-style: italic }
-hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
-ins { background: #ff9; color: #000; text-decoration: none; }
-mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
-pre, code, kbd, samp { font-family: monospace, serif; _font-family: 'courier new', monospace; font-size: 1em; }
-pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
-q { quotes: none }
-q:before, q:after { content: ""; content: none; }
-small { font-size: 85% }
-sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-sup { top: -0.5em }
-sub { bottom: -0.25em }
-ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
-dd { margin: 0 0 0 40px }
-nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
-img { border: 0; vertical-align: middle; -ms-interpolation-mode: bicubic; }
-svg:not(:root) { overflow: hidden }
-figure { margin: 0 }
-form { margin: 0 }
-fieldset { border: 0; margin: 0; padding: 0; }
-label { cursor: pointer }
-legend { border: 0; padding: 0; white-space: normal; *margin-left: -7px; }
-button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
-button, input { line-height: normal }
-button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
-button[disabled], input[disabled] { cursor: default }
-input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
-input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
-input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none }
-button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
-textarea { overflow: auto; vertical-align: top; resize: vertical; }
-table { border-collapse: collapse; border-spacing: 0; }
-td { vertical-align: top }
-.chromeframe { margin: 0.2em 0; background: #ccc; color: #000; padding: 0.2em 0; }
-
-input[type=text],
-input[type=email],
-select,
-textarea {
-	padding: 10px;
-	border: none;
-	-webkit-appearance: none;
-	margin-bottom: 5px;
-	width: 200px;
-}
-input[type=submit] {
-	background: $bright-blue;
-	color: #fff;
-	font-size: 16px;
-	padding: 10px 20px;
-	border: none;
-	-webkit-appearance: none;
+.wrap {
+  display: block;
+  margin: 0 10px;
 }
 
 p {
-	margin: 0;
-	margin-bottom: 0.5em;
+  margin: 0;
+  margin-bottom: 0.5em;
 }
 h1, h2, h3, h4, h5 {
-	margin: 0;
-	margin-bottom: 20px;
-	color: #fff;
+  margin: 0;
+  margin-bottom: 20px;
+  color: #fff;
 }
 h1, h2, h3 {
-	font-family: 'ChunkFive', Verdana, sans-serif;
+  type-heading();
 }
 h2 {
-	font-size: 32px;
+  font-size: 32px;
 }
+
+hgroup {
+  h2 {
+    display: inline;
+    margin: 0;
+  }
+  h2 + h3 {
+    type-basic();
+    font-size: 13px;
+    display: inline;
+    margin: 0;
+    padding-left: 10px;
+  }
+}
+
+.page-title {
+  margin-bottom: 30px;
+}
+
 body {
-	background: url("../img/dark-wood.png") repeat;
+  background: url("../img/dark-wood.png") repeat;
 }
 #wrapper {
-	width: 960px;
-	margin: 0 auto;
+  width: 960px;
+  margin: 0 auto;
+  padding-bottom: 50px;
 }
 #main {
-	clearfix();
-	clear: both;
+  clearfix();
+  clear: both;
 }
 #header {
-	clearfix();
-	padding-top: 50px;
-	position: relative;
-	padding-bottom: 50px;
+  clearfix();
+  padding-top: 50px;
+  position: relative;
+  padding-bottom: 50px;
 }
 .branding {
-	column(4);
-	> h1 {
-		margin: 0;
-		font-size: 64px;
-		a {
-			color: $red-logo;
-		}
-		line-height: 1em;
-		margin-bottom: -9px;
-	}
-	> h2 {
-		margin: 0;
-		font-size: 13px;
-		type-basic();
-	}
+  column(4);
+  > h1 {
+    margin: 0;
+    font-size: 64px;
+    a {
+      color: $red-logo;
+    }
+    line-height: 1em;
+    margin-bottom: -9px;
+  }
+  > h2 {
+    margin: 0;
+    font-size: 13px;
+    type-basic();
+  }
 }
 
 .nav-user {
-	position: absolute;
-	top: 20px;
-	right: 10px;
-	li {
-		display: inline;
-		padding-left: 10px;
-	}
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  li {
+    display: inline;
+    padding-left: 10px;
+  }
 }
 .nav-main {
-	column(8);
-	text-align: right;
-	margin-top: 20px;
-	li {
-		display: inline;
-		padding-left: 10px;
-	}
-	a {
-		background: $bright-blue;
-		color: #fff;
-		padding: 10px;
-		font-size: 16px;
-		line-height: 30px;
-		&:hover {
-			background: $accent-blue;
-		}
-	}
+  column(8);
+  text-align: right;
+  margin-top: 20px;
+  li {
+    display: inline;
+    padding-left: 10px;
+  }
+  a {
+    background: $bright-blue;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 30px;
+    &:hover {
+      background: $accent-blue;
+    }
+  }
 }
 
 .posters {
-	> header {
-		column(12);
-	}
+  > header {
+    column(12);
+  }
 }
 
 .posters-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  > li:nth-child(3n+1) {
+    clear: both;
+  }
 }
 .poster-excerpt {
-	column(4);
-	margin-bottom: 50px;
-	img {
-		margin-bottom: 20px;
-		border: #fff solid 15px;
-	}
+  column(4);
+  margin-bottom: 50px;
+  img {
+    margin-bottom: 20px;
+    border: #fff solid 15px;
+  }
 }
 .poster-excerpt-title {
-	type-basic();
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 0;
+  type-basic();
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.poster-img {
+  border: #fff solid 15px;
+}
+.poster-img-large {
+  max-width: 590px;
+}
+.poster-img-med {
+  max-width: 430px;
+}
+.poster-img-small {
+  max-width: 270px;
 }
 
+.poster-single {
+  clearfix();
+}
+.poster-single-title {
+  column(12);
+  margin-bottom: 20px;
+  > h2 {
+    margin-bottom: 10px;
+  }
+  > p {
+    font-size: 16px;
+    line-height: 1.25em;
+  }
+}
+.poster-single-image {
+  column(8);
+}
+.poster-single-info {
+  column(4);
+}
+.poster-single-image,
+.poster-single-info {
+  margin-bottom: 40px;
+}
+.poster-comments {
+  column(8);
+  > header {
+    margin-bottom: 20px;
+    h3 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    h4 {
+      type-basic();
+      font-size: 16px;
+    }
+  }
+}
 
 @media only screen and (min-width: 35em) {
 
@@ -253,13 +208,13 @@ body {
 .clearfix:after { clear: both }
 .clearfix { *zoom: 1 }
 @media print {
-	* { background: transparent !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
-	a, a:visited { text-decoration: underline }
-	a[href]:after { content: " (" attr(href) ")" }
-	abbr[title]:after { content: " (" attr(title) ")" }
-	.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: "" }
-	pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-	thead { display: table-header-group }
-	tr, img { page-break-inside: avoid }
-	img { max-width: 100% !important }
+  * { background: transparent !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
+  a, a:visited { text-decoration: underline }
+  a[href]:after { content: " (" attr(href) ")" }
+  abbr[title]:after { content: " (" attr(title) ")" }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: "" }
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group }
+  tr, img { page-break-inside: avoid }
+  img { max-width: 100% !important }
 }

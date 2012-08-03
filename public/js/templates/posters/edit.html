@@ -1,0 +1,41 @@
+<header class="wrap page-title">
+  <h2>Edit Your Poster!</h2>
+</header>
+<form class="form-poster" enctype="multipart/form-data" method="post">
+  <fieldset class="form-poster-img">
+    <img src="<%= image %>" class="poster-img poster-img-med" />
+    <div class="poster-image-upload">
+      <input type="button" class="btn" id="poster_image_btn" value="Find Image..." />
+    </div>
+    <input type="hidden" name="image_path" id="poster_image_path" value="<%= image %>" />
+  </fieldset>
+  <fieldset class="form-poster-info">
+    <div class="control-group">
+      <input type="text" name="title" id="poster_title" class="input-med input-main" placeholder="Your Poster's Title" value="<%= title %>" />
+      <!-- <div class="input-error">Yo! What's your poster's title?</div> -->
+    </div>
+    <div class="control-group">
+      <textarea name="content" id="poster_content" class="input-med input-desc" placeholder="Poster Details"><%= content %></textarea>
+    </div>
+    <div class="control-group">
+      <label for="poster_event_dates">Dates:</label>
+      <input type="text" name="event_dates" id="poster_event_dates" class="input-med" value="<%= event_dates %>" />
+    </div>
+    <div class="control-group">
+      <label for="poster_location">Location:</label>
+      <input type="text" name="address" id="poster_address" class="input-med" placeholder="What is your event's location?" value="<%= address %>" />
+    </div>
+    <div class="control-group">
+      <label for="poster_price">Price:</label>
+      <input type="text" name="price" id="poster_price" class="input-med" placeholder="How much does it cost to attend your event?" value="<%= price %>" />
+    </div>
+    <div class="control-group">
+      <label for="poster_tags">Tags:</label>
+      <input type="text" name="tags" id="poster_tags" class="input-med" placeholder="Enter descriptive tags to help other people find your event" value="<%= tags %>" />
+    </div>
+  </fieldset>
+  <footer class="wrap form-actions">
+    <a href="#">&larr; Ignore changes &amp; go back</a>
+    <input type="submit" class="btn btn-submit" value="Update poster" />
+  </footer>
+</form>

@@ -2,8 +2,9 @@ define([
   'jquery', 
   'underscore', 
   'backbone',
+  'router',
   'text!templates/posters/remove.html'
-], function($, _, Backbone, PosterView, removePostersTemplate){
+], function($, _, Backbone, appRouter, removePostersTemplate){
   
   var RemovePostersView = Backbone.View.extend({
 
@@ -13,10 +14,16 @@ define([
       
     },
     events: {
-      "click .delete": "delete"
+      "click .btn-delete": "delete"
+    },
+    render: function () {
+      this.$el.html(this.template(this.model.toJSON()));
+      return this;
     },
     delete: function () {
-      this.model.remove();
+      this.model.remove(function () {
+        appRouter.navigate("", true);
+      });
     }
   });
   return RemovePostersView;
