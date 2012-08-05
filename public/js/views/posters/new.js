@@ -32,7 +32,6 @@ define([
         action: '/api/posters',
         name: 'image',
         onSubmit: function (file, extension) {
-          console.log("uploading file");
           self.$(".poster-image-placeholder").css('text-align', 'center').html("<img src='/img/spinning-wheel.gif' />");
         },
         onComplete: function (file, response) {

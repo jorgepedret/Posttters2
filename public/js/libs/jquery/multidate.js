@@ -35,8 +35,9 @@
         if (hiddenData.val() === "") {
           addField();
         } else {
-          var saved_dates = hiddenData.val();
-          var json_dates = $.parseJSON(saved_dates);
+          var saved_dates = hiddenData.val(),
+            json_dates = $.parseJSON(saved_dates);
+          
           dates = json_dates;
           hiddenData.val(JSON.stringify(dates));
           if (json_dates) {
@@ -51,10 +52,7 @@
         if (!dates[passedFieldId]) {
           dates[passedFieldId] = {};
         }
-        console.log("Updated dates! ", passedFieldId, date);
         dates[passedFieldId][fromOrTo] = date;
-        console.log(passedFieldId);
-        console.log("dates: ", dates);
         hiddenData.val(JSON.stringify(dates));
       }
 
