@@ -36,9 +36,15 @@ define([
         var postersView = new PostersView({
           collection: posters
         });
-        posters.fetch();
-        var html = postersView.render().el
-        that.$el.html(html);
+        //Show loading
+        posters.fetch({
+          success: function (posters) {
+            var html = postersView.render().el;
+            $(html).find("img").load(function () {
+              that.$el.html(html);
+            });
+          }
+        });
       });
     },
     poster_new: function () {

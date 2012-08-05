@@ -1,78 +1,115 @@
 input[type=text],
 select,
-textarea {
-  border: none;
-  -webkit-appearance: none;
-}
+textarea
+  border none
+  -webkit-appearance none
+
 /*
 Form field sizes (small, med, large, x-large)
 */
-.input-med {
-  width: 410px;
-  padding:15px 35px 15px 15px;
-}
-.input-large {
-  width: 570px;
-  padding:15px 35px 15px 15px;
-}
-.input-main {
-  type-heading();
-  font-size: 24px;
-}
-.input-desc {
-  font-size: 16px;
-  transition: height .2s;
-}
-.input-pass {
-  background: #fff url('../img/input-pass.png') 100% 5px no-repeat;
-  &.input-med {
-    background-position: 430px 16px;
-    &.input-main {
-      background-position: 430px 20px;
-    }
-  }
-}
-.input-error {
-  background: $red-logo;
-  padding: 10px 15px;
-  color: #fff;
-}
-.control-group {
-  margin-bottom: 20px;
-  > label {
-    display: block;
-    margin-bottom: 5px;
-  }
-}
-.form-actions {
-  text-align: right;
-}
+.input-med
+  width 410px
+  padding:15px 35px 15px 15px
 
-.form-poster {
-  clearfix();
-}
-.form-poster-img {
-  column(6);
-  > img {
-    margin-bottom: 10px;
-  }
-}
-.form-poster-info {
-  column(6);
-}
+.input-large
+  width 570px
+  padding:15px 35px 15px 15px
 
-.poster-image-upload {
-  text-align: right;
-}
-.poster-image-placeholder {
-  border: #fff 15px solid;
-  padding: 15px;
-  background: $light-blue;
-  margin-bottom: 10px;
-  text-align: center;
-  color: #fff;
-  > h3 {
-    font-size: 24px;
-    margin: 5px;
-  }
-}
+.input-main
+  type-heading()
+  font-size 24px
+
+.input-desc
+  font-size 16px
+  transition height .2s
+
+.input-pass
+  background #fff url('../img/input-pass.png') 100% 5px no-repeat
+  &.input-med
+    background-position 430px 16px
+    &.input-main
+      background-position 430px 20px
+
+.input-error
+  background $red-logo
+  padding 10px 15px
+  color #fff
+
+.control-group
+  margin-bottom 20px
+  > label
+    display block
+    margin-bottom 5px
+
+
+.form-actions
+  text-align right
+
+
+.form-poster
+  clearfix()
+
+.form-poster-img
+  column(6)
+  > img
+    margin-bottom 10px
+
+
+.form-poster-info
+  column(6)
+
+
+.poster-image-upload
+  text-align right
+
+.poster-image-placeholder
+  border #fff 15px solid
+  padding 15px
+  background $light-blue
+  margin-bottom 10px
+  text-align center
+  color #fff
+  > h3
+    font-size 24px
+    margin 5px
+
+
+/* Multidate field styling */
+.bnc-multidate-debug
+  width 100%
+  border #CCC solid 1px
+
+.bnc-multidate-wrap
+  background #fff
+  padding 15px
+.bnc-multidate-field
+  color #444
+  > label
+    padding-right 3px
+
+.bnc-multidate-date-input-from,
+.bnc-multidate-date-input-to
+  background #d9d9d9
+  padding 5px
+  height 34px
+  width 120px
+
+.bnc-multidate-date-input-from
+  margin-right 10px
+
+.bnc-multidate-add,
+.bnc-multidate-remove
+  display inline-block
+  width 44px
+  height 44px
+  background $light-green
+  color #fff
+  text-align center
+  font-size 29px
+  font-weight bold
+  line-height 44px
+  position relative
+  top 4px
+  margin-left 7px
+  &:hover
+    background $accent-green

@@ -9,15 +9,29 @@ require.config({
     backbone: 'libs/backbone/backbone-optamd3-min',
     text: 'libs/require/text',
     router: 'router',
+    jqueryui: 'libs/jquery-ui/jquery-ui.min',
 
     ajaxupload: 'libs/jquery/ajaxupload',
     autoresize: 'libs/jquery/autoresize',
-    textchange: 'libs/jquery/textchange'
+    textchange: 'libs/jquery/textchange',
+    moment: 'libs/utils/moment',
+    multidate: 'libs/jquery/multidate',
+    timepicker: 'libs/jquery-ui/timepicker'
   },
   shim: {
-    'autoresize': ['jquery', 'textchange']
+    'autoresize': ['jquery', 'textchange'],
+    'timepicker': ['jquery', 'jqueryui'],
+    'multidate': ['jquery', 'jqueryui', 'timepicker']
   }
 });
+
+function loadCss(url) {
+  var link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.href = url;
+  document.getElementsByTagName("head")[0].appendChild(link);
+}
 
 require([
   'jquery', 

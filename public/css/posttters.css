@@ -347,6 +347,49 @@ textarea {
   font-size: 24px;
   margin: 5px;
 }
+.bnc-multidate-debug {
+  width: 100%;
+  border: #ccc solid 1px;
+}
+.bnc-multidate-wrap {
+  background: #fff;
+  padding: 15px;
+}
+.bnc-multidate-field {
+  color: #444;
+}
+.bnc-multidate-field > label {
+  padding-right: 3px;
+}
+.bnc-multidate-date-input-from,
+.bnc-multidate-date-input-to {
+  background: #d9d9d9;
+  padding: 5px;
+  height: 34px;
+  width: 120px;
+}
+.bnc-multidate-date-input-from {
+  margin-right: 10px;
+}
+.bnc-multidate-add,
+.bnc-multidate-remove {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  background: #9cd894;
+  color: #fff;
+  text-align: center;
+  font-size: 29px;
+  font-weight: bold;
+  line-height: 44px;
+  position: relative;
+  top: 4px;
+  margin-left: 7px;
+}
+.bnc-multidate-add:hover,
+.bnc-multidate-remove:hover {
+  background: #4ab03d;
+}
 .btn {
   background: #2152bf;
   color: #fff;
@@ -622,87 +665,89 @@ body {
   font-weight: 100;
   font-size: 16px;
 }
-@media only screen and (min-width: 35em) {
+.poster-dates {
+  margin-bottom: 30px;
 }
-.ir {
-  border: 0;
-  font: 0/0 a;
-  text-shadow: none;
-  color: transparent;
-  background-color: transparent;
-}
-.hidden {
-  display: none !important;
-  visibility: hidden;
-}
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
+.poster-dates > ol {
+  list-style: none;
   margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
+  padding: 0;
 }
-.invisible {
-  visibility: hidden;
+.poster-dates > ol > li {
+  padding: 0;
+  margin: 0;
+  clear: both;
+  margin-bottom: 10px;
+  color: #fff;
 }
-.clearfix:before,
-.clearfix:after {
+.poster-dates .month {
+  float: left;
+  width: 105px;
+  font-family: 'ChunkFive', Verdana, sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  line-height: 41px;
+  text-align: right;
+  padding-right: 10px;
+}
+.poster-dates .day {
+  font-weight: bold;
+  display: inline;
+}
+.poster-dates .year {
+  display: inline;
+}
+.poster-dates .time {
+  display: block;
+}
+.poster-location {
+  margin-bottom: 30px;
+}
+.poster-location .map {
+  border: #fff solid 15px;
+}
+.poster-location > address {
+  padding-top: 5px;
+  text-align: right;
+  font-style: normal;
+}
+.poster-price {
+  margin-bottom: 30px;
+  *zoom: 1;
+}
+.poster-price:before,
+.poster-price:after {
   content: "";
   display: table;
 }
-.clearfix:after {
+.poster-price:after {
   clear: both;
 }
-.clearfix {
-  *zoom: 1;
+.poster-price .price {
+  font-size: 24px;
+  float: left;
+  width: 105px;
+  padding-right: 10px;
+  text-align: right;
 }
-@media print {
-  * {
-    background: transparent !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
-  }
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-  thead {
-    display: table-header-group;
-  }
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-  img {
-    max-width: 100% !important;
-  }
+.poster-price .price-comments {
+  float: right;
+  width: 185px;
+}
+.poster-tags {
+  margin-bottom: 30px;
+}
+.poster-tags a {
+  background: #fd402d;
+  color: #fff;
+  padding: 3px 10px;
+  display: inline-block;
+  margin-right: 5px;
+}
+.poster-tags a:hover {
+  background: #fd4f3e;
+}
+.sponsor-ad img {
+  border: #fff solid 15px;
+  width: 270px;
 }

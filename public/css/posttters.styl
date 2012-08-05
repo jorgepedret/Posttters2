@@ -1,220 +1,243 @@
 /* Colors */
-$light-blue = #8fb6e7;
-$bright-blue = #2152bf;
-$accent-blue = #4981fd;
-$red-logo = #fd402d;
-$light-grey = #d9d9d9;
+$light-blue = #8fb6e7
+$bright-blue = #2152bf
+$accent-blue = #4981fd
+$red-logo = #fd402d
+$red-logo-dark = #c62313
+$light-grey = #d9d9d9
 
-@import "partials/grid";
-@import "partials/typography";
-@import "partials/reset";
-@import "partials/forms";
-@import "partials/buttons";
+$light-green = #9cd894
+$accent-green = #4ab03d
 
-.wrap {
-  display: block;
-  margin: 0 10px;
-}
+@import "partials/grid"
+@import "partials/typography"
+@import "partials/reset"
+@import "partials/forms"
+@import "partials/buttons"
 
-p {
-  margin: 0;
-  margin-bottom: 0.5em;
-}
-h1, h2, h3, h4, h5 {
-  margin: 0;
-  margin-bottom: 20px;
-  color: #fff;
-}
-h1, h2, h3 {
-  type-heading();
-}
-h2 {
-  font-size: 32px;
-}
+.wrap
+  display block
+  margin 0 10px
 
-hgroup {
-  h2 {
-    display: inline;
-    margin: 0;
-  }
-  h2 + h3 {
-    type-basic();
-    font-size: 13px;
-    display: inline;
-    margin: 0;
-    padding-left: 10px;
-  }
-}
+p
+  margin 0
+  margin-bottom 0.5em
 
-.page-title {
-  margin-bottom: 30px;
-}
+h1, h2, h3, h4, h5
+  margin 0
+  margin-bottom 20px
+  color #fff
 
-body {
-  background: url("../img/dark-wood.png") repeat;
-}
-#wrapper {
-  width: 960px;
-  margin: 0 auto;
-  padding-bottom: 50px;
-}
-#main {
-  clearfix();
-  clear: both;
-}
-#header {
-  clearfix();
-  padding-top: 50px;
-  position: relative;
-  padding-bottom: 50px;
-}
-.branding {
-  column(4);
-  > h1 {
-    margin: 0;
-    font-size: 64px;
-    a {
-      color: $red-logo;
-    }
-    line-height: 1em;
-    margin-bottom: -9px;
-  }
-  > h2 {
-    margin: 0;
-    font-size: 13px;
-    type-basic();
-  }
-}
+h1, h2, h3
+  type-heading()
 
-.nav-user {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  li {
-    display: inline;
-    padding-left: 10px;
-  }
-}
-.nav-main {
-  column(8);
-  text-align: right;
-  margin-top: 20px;
-  li {
-    display: inline;
-    padding-left: 10px;
-  }
-  a {
-    background: $bright-blue;
-    color: #fff;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 30px;
-    &:hover {
-      background: $accent-blue;
-    }
-  }
-}
+h2
+  font-size 32px
 
-.posters {
-  > header {
-    column(12);
-  }
-}
+hgroup
+  h2
+    display inline
+    margin 0
+  h2 + h3
+    type-basic()
+    font-size 13px
+    display inline
+    margin 0
+    padding-left 10px
 
-.posters-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  > li:nth-child(3n+1) {
-    clear: both;
-  }
-}
-.poster-excerpt {
-  column(4);
-  margin-bottom: 50px;
-  img {
-    margin-bottom: 20px;
-    border: #fff solid 15px;
-  }
-}
-.poster-excerpt-title {
-  type-basic();
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 0;
-}
-.poster-img {
-  border: #fff solid 15px;
-}
-.poster-img-large {
-  max-width: 590px;
-}
-.poster-img-med {
-  max-width: 430px;
-}
-.poster-img-small {
-  max-width: 270px;
-}
+.page-title
+  margin-bottom 30px
 
-.poster-single {
-  clearfix();
-}
-.poster-single-title {
-  column(12);
-  margin-bottom: 20px;
-  > h2 {
-    margin-bottom: 10px;
-  }
-  > p {
-    font-size: 16px;
-    line-height: 1.25em;
-  }
-}
-.poster-single-image {
-  column(8);
-}
-.poster-single-info {
-  column(4);
-}
+body
+  background url("../img/dark-wood.png") repeat
+
+#wrapper
+  width 960px
+  margin 0 auto
+  padding-bottom 50px
+
+#main
+  clearfix()
+  clear both
+
+#header
+  clearfix()
+  padding-top 50px
+  position relative
+  padding-bottom 50px
+
+.branding
+  column(4)
+  > h1
+    margin 0
+    font-size 64px
+    line-height 1em
+    margin-bottom -9px
+    a
+      color $red-logo
+  > h2
+    margin 0
+    font-size 13px
+    type-basic()
+
+.nav-user
+  position absolute
+  top 20px
+  right 10px
+  li
+    display inline
+    padding-left 10px
+  
+
+.nav-main
+  column(8)
+  text-align right
+  margin-top 20px
+  li
+    display inline
+    padding-left 10px
+  a
+    background $bright-blue
+    color #fff
+    padding 10px
+    font-size 16px
+    line-height 30px
+    &:hover
+      background $accent-blue
+
+.posters
+  > header
+    column(12)
+
+.posters-list
+  margin 0
+  padding 0
+  list-style none
+  > li:nth-child(3n+1)
+    clear both
+
+.poster-excerpt
+  column(4)
+  margin-bottom 50px
+  img
+    margin-bottom 20px
+    border #fff solid 15px
+
+.poster-excerpt-title
+  type-basic()
+  font-size 16px
+  font-weight bold
+  margin-bottom 0
+
+.poster-img
+  border #fff solid 15px
+
+.poster-img-large
+  max-width 590px
+
+.poster-img-med
+  max-width 430px
+
+.poster-img-small
+  max-width 270px
+
+.poster-single
+  clearfix()
+
+.poster-single-title
+  column(12)
+  margin-bottom 20px
+  > h2
+    margin-bottom 10px
+  
+  > p
+    font-size 16px
+    line-height 1.25em
+
+.poster-single-image
+  column(8)
+
+.poster-single-info
+  column(4)
+
 .poster-single-image,
-.poster-single-info {
-  margin-bottom: 40px;
-}
-.poster-comments {
-  column(8);
-  > header {
-    margin-bottom: 20px;
-    h3 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    h4 {
-      type-basic();
-      font-size: 16px;
-    }
-  }
-}
+.poster-single-info
+  margin-bottom 40px
 
-@media only screen and (min-width: 35em) {
+.poster-comments
+  column(8)
+  > header
+    margin-bottom 20px
+    h3
+      font-size 32px
+      margin-bottom 10px
+    h4
+      type-basic()
+      font-size 16px
 
-}
+.poster-dates
+  margin-bottom 30px
+  > ol
+    list-style none
+    margin 0
+    padding 0
+    > li
+      padding 0
+      margin 0
+      clear both
+      margin-bottom 10px
+      color #fff
+  .month
+    float left
+    width 105px
+    type-heading()
+    font-size 40px
+    text-transform uppercase
+    line-height 41px
+    text-align right
+    padding-right 10px
+  .day
+    font-weight bold
+    display inline
+  .year
+    display inline
+  .time
+    display block
 
-.ir { border: 0; font: 0/0 a; text-shadow: none; color: transparent; background-color: transparent; }
-.hidden { display: none !important; visibility: hidden; }
-.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
-.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
-.invisible { visibility: hidden }
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both }
-.clearfix { *zoom: 1 }
-@media print {
-  * { background: transparent !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
-  a, a:visited { text-decoration: underline }
-  a[href]:after { content: " (" attr(href) ")" }
-  abbr[title]:after { content: " (" attr(title) ")" }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: "" }
-  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-  thead { display: table-header-group }
-  tr, img { page-break-inside: avoid }
-  img { max-width: 100% !important }
-}
+.poster-location
+  margin-bottom 30px
+  .map
+    border #fff solid 15px
+  > address
+    padding-top 5px
+    text-align right
+    font-style normal
+
+.poster-price
+  margin-bottom 30px
+  clearfix()
+  .price
+    font-size 24px
+    float left
+    width 105px
+    padding-right 10px
+    text-align right
+  .price-comments
+    float right
+    width 185px
+
+.poster-tags
+  margin-bottom 30px
+  a
+    background $red-logo
+    color #fff
+    padding 3px 10px
+    display inline-block
+    margin-right 5px
+    &:hover
+      background lighten($red-logo, 8%)
+
+.sponsor-ad
+  img
+    border #fff solid 15px
+    width 270px

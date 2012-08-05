@@ -1,4 +1,8 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+define([
+  'underscore',
+  'backbone',
+  'moment'
+  ], function(_, Backbone) {
   
   var PosterModel = Backbone.Model.extend({
     idAttribute: '_id',
@@ -52,6 +56,10 @@ define(['underscore', 'backbone'], function(_, Backbone) {
       return _.extend(json, {
         excerpt: (function () {
           return self.get('content').substring(0, 140);
+        })(),
+        modified: (function () {
+          console.log(self.get('date'));
+          return moment(self.get('date')).from(moment());
         })()
       });
     },

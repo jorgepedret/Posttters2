@@ -8,7 +8,8 @@ var application_root = __dirname,
   util = require("util"),
   http = require("http"),
   formidable = require("formidable"),
-  format = util.format;
+  format = util.format,
+  moment = require("moment");
 
 var app = express.createServer();
 
