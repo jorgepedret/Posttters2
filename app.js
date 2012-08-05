@@ -165,10 +165,12 @@ app.post('/api/posters', function(req, res, next){
     }
   } else {
     console.log("Creating poster");
+    console.log(req.body);
     poster = new Poster({
       title: req.body.title,
       author: req.body.author_id,
       date: new Date(),
+      event_dates: req.body.event_dates,
       content: req.body.content,
       status: "published",
       slug: slug(req.body.title),

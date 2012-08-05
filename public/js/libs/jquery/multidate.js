@@ -14,6 +14,7 @@
       id = 0,
       count = 0;
 
+
     return this.each(function () {
       var $this = $(this),
         thisId = id++,
@@ -26,13 +27,14 @@
           .val($this.val()),
         wrapper = $('<div></div>')
           .addClass('bnc-multidate-wrap')
-          .attr('id', 'bnc-multidate-' + thisId);
+          .attr('id', 'bnc-multidate-' + thisId),
+        $wrapper;
+
 
       function prePopulate() {
         if (hiddenData.val() === "") {
           addField();
         } else {
-          console.log("Dates not empty, try to parse the data");
         }
       }
 
@@ -51,7 +53,6 @@
         }
         $('#bnc-multidate-' + thisId).find('#bnc-multidate-field-' + id).remove();
         count--;
-        console.log(count);
         if (count <= 0) {
           addField();
         }
@@ -74,8 +75,7 @@
           removeField = $('<a>+</a>').addClass('bnc-multidate-add').data('fieldId', thisFieldId);
 
         fieldWrap
-          .append(labelFrom, dateFromInput, labelTo, dateToInput, addField, removeField)
-          .appendTo('#bnc-multidate-' + thisId);
+          .append(labelFrom, dateFromInput, labelTo, dateToInput, addField, removeField);
 
         if (jQuery.ui.datepicker) {
           fieldWrap.find('.bnc-multidate-date-input-from').datetimepicker({
@@ -83,7 +83,7 @@
             currentText: "Now",
             showButtonPanel: true,
             dateFormat: "yy-mm-dd",
-            timeFormat: "hh:mm",
+            timeFormat: "hh:mm tt",
             separator: " @ ",
             hour: 0,
             minute: 0,
@@ -97,7 +97,7 @@
             currentText: "Now",
             showButtonPanel: true,
             dateFormat: "yy-mm-dd",
-            timeFormat: "hh:mm",
+            timeFormat: "hh:mm tt",
             separator: " @ ",
             hour: 0,
             minute: 0,
@@ -107,6 +107,8 @@
             }
           });
         }
+        wrapper.append(fieldWrap);
+        
         count++;
         fieldId++;
       }
@@ -117,8 +119,10 @@
 
       // Replace the original field with a hidden field
       $this.replaceWith(hiddenData);
+      
       // Wrap the data field with the widget wrapper
-      hiddenData.wrap(wrapper);
+      hiddenData.before(wrapper);
+
       // Initialize the widget
       prePopulate();
 

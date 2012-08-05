@@ -58,8 +58,25 @@ define([
           return self.get('content').substring(0, 140);
         })(),
         modified: (function () {
-          console.log(self.get('date'));
           return moment(self.get('date')).from(moment());
+        })(),
+        dates: (function () {
+          var json_dates = $.parseJSON(self.get('event_dates')),
+            parsed_dates = [];
+          console.log(typeof parsed_dates);
+          if (json_dates) {
+            $.each(json_dates, function (i, val) {
+              var date_from = moment(val.from, "YYYY-MM-DD @ hh:mm a");
+              var date_to = moment(val.to, "YYYY-MM-DD @ hh:mm a");
+              parsed_dates.push({
+                'month': date_from.format('MMM'),
+                'day': date_from.format('Do'),
+                'year': date_from.format('YYYY'),
+                'time': date_from.format('h:ma') + ' - ' + date_to.format('h:ma'),
+              })
+            });
+          }
+          return parsed_dates;
         })()
       });
     },

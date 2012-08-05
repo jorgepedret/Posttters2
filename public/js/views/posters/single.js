@@ -17,7 +17,8 @@ define([
     },
     render: function() {
       var self = this;
-      this.$el.html(this.template(this.model.toJSON()));
+      console.log(this.model.serialize());
+      this.$el.html(this.template(this.model.serialize()));
       this.$el.ready(function () {
         self.$('#comment').autoresize();
       });

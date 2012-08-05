@@ -21,7 +21,6 @@ define([
     },
 
     render: function() {
-      console.log(this.model.serialize());
       this.$el.html(this.template(this.model.serialize()));
       return this;
     },

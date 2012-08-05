@@ -6,36 +6,28 @@
   <img src="<%= image %>" alt="<%= title %>" class="poster-img poster-img-large" />
 </section>
 <section class="poster-single-info">
-  <section class="poster-dates">
-    <ol>
-      <li>
-        <span class="month">May</span>
-        <span class="day">15th,</span>
-        <span class="year">2012</span>
-        <span class="time">9:00am - 5:00pm</span>
-      </li>
-      <li>
-        <span class="month">JUN</span>
-        <span class="day">15th,</span>
-        <span class="year">2012</span>
-        <span class="time">9:00am - 5:00pm</span>
-      </li>
-      <li>
-        <span class="month">DEC</span>
-        <span class="day">15th,</span>
-        <span class="year">2012</span>
-        <span class="time">9:00am - 5:00pm</span>
-      </li>
-    </ol>
-  </section>
+  <% if (dates.length > 0) { %>
+    <section class="poster-dates">
+      <ol>
+        <% _.each(dates, function (adate) { %>
+          <li>
+            <span class="month"><%= adate.month %></span>
+            <span class="day"><%= adate.day %>,</span>
+            <span class="year"><%= adate.year %></span>
+            <span class="time"><%= adate.time %></span>
+          </li>
+        <% }); %>
+      </ol>
+    </section>
+  <% } %>
   <section class="poster-location">
     <div class="map">
       <img src="/img/map-placeholder.jpg" alt="Map Placeholder" class="img-bordered" />
     </div>
-    <address>1200 West Georgia Str. Vancouver, V6E 4R2</address>
+    <address><%= address %></address>
   </section>
   <section class="poster-price">
-    <span class="price">$45</span>
+    <span class="price"><%= price %></span>
     <p class="price-comments">Tickets are $45.00 per person and include wine samples, live entertainment, and, of course, plenty of pork.</p>
   </section>
   <section class="poster-tags">
