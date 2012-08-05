@@ -137,6 +137,7 @@ app.put('/api/posters/:id', function(req, res){
     poster.modified = new Date();
     poster.image = req.body.image;
     poster.address = req.body.address;
+    poster.event_dates = req.body.event_dates;
 
     return poster.save(function(err) {
       if (!err) {

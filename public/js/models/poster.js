@@ -63,7 +63,6 @@ define([
         dates: (function () {
           var json_dates = $.parseJSON(self.get('event_dates')),
             parsed_dates = [];
-          console.log(typeof parsed_dates);
           if (json_dates) {
             $.each(json_dates, function (i, val) {
               var date_from = moment(val.from, "YYYY-MM-DD @ hh:mm a");

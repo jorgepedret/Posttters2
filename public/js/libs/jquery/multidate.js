@@ -35,6 +35,15 @@
         if (hiddenData.val() === "") {
           addField();
         } else {
+          var saved_dates = hiddenData.val();
+          var json_dates = $.parseJSON(saved_dates);
+          dates = json_dates;
+          hiddenData.val(JSON.stringify(dates));
+          if (json_dates) {
+            $.each(json_dates, function (i, val) {
+              addField(i, val.from, val.to);
+            });
+          }
         }
       }
 
@@ -42,7 +51,10 @@
         if (!dates[passedFieldId]) {
           dates[passedFieldId] = {};
         }
+        console.log("Updated dates! ", passedFieldId, date);
         dates[passedFieldId][fromOrTo] = date;
+        console.log(passedFieldId);
+        console.log("dates: ", dates);
         hiddenData.val(JSON.stringify(dates));
       }
 
@@ -58,8 +70,8 @@
         }
       }
 
-      function addField() {
-        var thisFieldId = fieldId,
+      function addField(savedId, dateFrom, dateTo) {
+        var thisFieldId = typeof savedId!=='undefined'?savedId:fieldId,
           fieldWrap = $('<div />').addClass('bnc-multidate-field').attr('id', 'bnc-multidate-field-' + thisFieldId),
           labelFrom = $('<label>From:</label>').attr('for', 'bnc-multidate-date-input-from-' + thisFieldId),
           dateFromInput = $('<input />')
@@ -79,7 +91,6 @@
 
         if (jQuery.ui.datepicker) {
           fieldWrap.find('.bnc-multidate-date-input-from').datetimepicker({
-            minDate: new Date(),
             currentText: "Now",
             showButtonPanel: true,
             dateFormat: "yy-mm-dd",
@@ -88,12 +99,16 @@
             hour: 0,
             minute: 0,
             ampm: true,
+            defaultDate: new Date(),
             onSelect: function (dateText, inst) {
               updateDates(thisFieldId, 'from', dateText);
             }
           });
+          if (typeof dateFrom !== 'undefined') {
+            fieldWrap.find('.bnc-multidate-date-input-from').datetimepicker("setDate", new Date(dateFrom));
+          }
+          
           fieldWrap.find('.bnc-multidate-date-input-to').datetimepicker({
-            minDate: new Date(),
             currentText: "Now",
             showButtonPanel: true,
             dateFormat: "yy-mm-dd",
@@ -102,10 +117,14 @@
             hour: 0,
             minute: 0,
             ampm: true,
+            defaultDate: new Date(),
             onSelect: function (dateText, inst) {
               updateDates(thisFieldId, 'to', dateText);
             }
           });
+          if (typeof dateTo !== 'undefined') {
+            fieldWrap.find('.bnc-multidate-date-input-to').datetimepicker("setDate", new Date(dateTo));
+          }
         }
         wrapper.append(fieldWrap);
         

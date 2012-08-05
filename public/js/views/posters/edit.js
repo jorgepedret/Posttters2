@@ -6,7 +6,8 @@ define([
   'router',
   'text!templates/posters/edit.html',
   'ajaxupload',
-  'autoresize'
+  'autoresize',
+  'multidate'
 ], function($, _, Backbone, Poster, appRouter, editPosterTemplate){
   var EditPosterView = Backbone.View.extend({
 
@@ -20,6 +21,7 @@ define([
 
     initialize: function () {
       this.model.on("change", this.render, this);
+      loadCss('/js/libs/jquery-ui/css/posttters/jquery-ui.css');
     },
 
     updatePoster: function (e) {
@@ -49,6 +51,7 @@ define([
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.ready(function () {
         self.$('.input-desc').autoresize();
+        self.$('#poster_event_dates').multidate();
         new AjaxUpload(self.$('#poster_image_btn'), {
           action: '/api/posters',
           name: 'image',
