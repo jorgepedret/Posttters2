@@ -1,8 +1,9 @@
 define([
   'underscore',
   'backbone',
+  'collections/metas',
   'moment'
-  ], function(_, Backbone) {
+  ], function(_, Backbone, Metas) {
   
   var PosterModel = Backbone.Model.extend({
     idAttribute: '_id',
@@ -16,19 +17,25 @@ define([
       content: "No description",
       title: "Untitled Poster",
       status: "published",
-      image: "/img/sample-poster-m.jpg",
+      images: {
+        original: "/img/sample-poster-l.jpg",
+        large: "/img/sample-poster-l.jpg",
+        medium: "/img/sample-poster-m.jpg",
+        small: "/img/sample-poster-s.jpg",
+      },
       modified: function () {
         return new Date();
       },
       tags: [],
       likes: 0,
       commenst: [],
-      meta: [],
+      meta: new Metas(),
       price: "FREE",
       featured: false
     },
     initialize: function () {
       _.bindAll(this, 'serialize');
+      //this.set('meta', new Metas(this.get('meta')), {silent: true});
     },
     validateField: function (name, value, callback) {
       var error = "";

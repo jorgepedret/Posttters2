@@ -9,7 +9,8 @@ var application_root = __dirname,
   http = require("http"),
   formidable = require("formidable"),
   format = util.format,
-  moment = require("moment");
+  moment = require("moment"),
+  im = require("imagemagick");
 
 var app = express.createServer();
 
@@ -22,10 +23,105 @@ var getExtension = function (filename) {
     return ext[ext.length - 1];
 }
 
+var processPosterImage = function (filename, filepath, callback) {
+  var minimum_width = 590,
+    s_w = 270,
+    s_h = 405,
+    m_w = 430,
+    l_w = 590,
+    valid_formats = ["jpg", "jpeg", "png"],
+    extension = path.extname(filename),
+    new_file_name = path.basename(filepath),
+    image_path = application_root + '/public/img/posters/',
+    full_file_name = image_path + new_file_name + extension,
+    small_file_name = image_path + new_file_name + '-s' + extension,
+    medium_file_name = image_path + new_file_name + '-m' + extension,
+    large_file_name = image_path + new_file_name + '-l' + extension;
+  
+  im.identify(filepath, function (err, features) {
+    if (err) {
+      callback('Invalid image file: ' + err);
+      return;
+    }
+    var format = features.format.toLowerCase();
+    if (_.indexOf(valid_formats, format) !== -1) {
+      if (features.width >= minimum_width) {
+        // Renaming and moving the original file
+        fs.rename(filepath, full_file_name, function (err) {
+          if (err) {
+            callback('Something went wrong when trying to move your image: ' + err);
+            return;
+          }
+          // Creating the small size image
+          im.resize({
+              srcPath: full_file_name,
+              dstPath: small_file_name,
+              quality: 1,
+              format: format,
+              width: s_w,
+              height: s_h,
+            }, function (err) {
+              if (err) {
+                callback('Something went wrong when trying to resize your image (small): ' + err);
+                return;
+              }
+            }
+          );
+          // Creating the medium size image
+          im.resize({
+              srcPath: full_file_name,
+              dstPath: medium_file_name,
+              quality: 1,
+              format: format,
+              width: m_w,
+              height: 999999
+            }, function (err) {
+              if (err) {
+                callback('Something went wrong when trying to resize your image (medium): ' + err);
+                return;
+              }
+            }
+          );
+          // Creating the medium size image
+          im.resize({
+              srcPath: full_file_name,
+              dstPath: large_file_name,
+              quality: 1,
+              format: format,
+              width: l_w,
+              height: 999999
+            }, function (err) {
+              if (err) {
+                callback('Something went wrong when trying to resize your image (large): ' + err);
+                return;
+              }
+            }
+          );
+
+          var file_paths = {
+            image: full_file_name.replace(application_root + '/public', ""),
+            image_s: small_file_name.replace(application_root + '/public', ""),
+            image_m: medium_file_name.replace(application_root + '/public', ""),
+            image_l: large_file_name.replace(application_root + '/public', ""),
+          }
+
+          callback(false, file_paths);
+        });
+      } else {
+        callback('Image is too small. It should at least have ' + minimum_width +'px of width');
+        return;
+      }
+    } else {
+      callback('Invalid image extension');
+      return;
+    }
+  })
+}
+
 // model
 mongoose.connect('mongodb://localhost/posttters3');
 
-var meta = new mongoose.Schema({
+var Meta = new mongoose.Schema({
   key: String,
   value: String
 });
@@ -39,7 +135,7 @@ var User = mongoose.model('User', new mongoose.Schema({
   registered: Date,
   activation_key: String,
   status: String,
-  meta : [meta]
+  meta : [Meta]
 }));
 
 var Tags = mongoose.model('Tags', new mongoose.Schema({
@@ -68,7 +164,12 @@ var Poster = mongoose.model('Poster', new mongoose.Schema({
   content: String,
   address: String,
   price: String,
-  image: String,
+  images: {
+    original: String,
+    large: String,
+    medium: String,
+    small: String
+  },
   status: String,
   slug: String,
   modified: Date,
@@ -76,7 +177,7 @@ var Poster = mongoose.model('Poster', new mongoose.Schema({
   likes: Number,
   commenst: [Comments],
   featured: Boolean,
-  meta: [meta]
+  meta: [Meta]
 }));
 
 app.configure(function(){
@@ -150,19 +251,24 @@ app.put('/api/posters/:id', function(req, res){
 
 app.post('/api/posters', function(req, res, next){
   var poster,
-    image,
-    image_path = application_root + '/public/img/posters/';
+    image;
   if (req.files) {
     console.log("Uploading poster image");
     image = req.files.image || null;
     if (image !== null) {
-      console.log(image);
-      fs.rename(image.path, image_path + image.name, function (err) {
-        var new_file_path = image_path + image.name;
-        res.send(new_file_path.replace(application_root + '/public', ""));
+      processPosterImage(image.name, image.path, function (err, file_paths) {
+        if (err) {
+          res.send(415, {
+            error: err
+          });
+        } else {
+          res.send(file_paths);
+        }
       });
     } else {
-      res.send("Invalid image upload", 415);
+      res.send(415, {
+        error: "Invalid image upload"
+      });
     }
   } else {
     console.log("Creating poster");
@@ -175,7 +281,12 @@ app.post('/api/posters', function(req, res, next){
       status: "published",
       slug: slug(req.body.title),
       modified: new Date(),
-      image: req.body.image,
+      images: {
+        original: req.body.image,
+        large: req.body.image_l,
+        medium: req.body.image_m,
+        small: req.body.image_s
+      },
       address: req.body.address
     });
     poster.save(function(err) {

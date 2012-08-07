@@ -31,15 +31,29 @@ define([
       new AjaxUpload(this.$('#poster_image_btn'), {
         action: '/api/posters',
         name: 'image',
+        responseType: 'json',
         onSubmit: function (file, extension) {
           self.$(".poster-image-placeholder").css('text-align', 'center').html("<img src='/img/spinning-wheel.gif' />");
         },
         onComplete: function (file, response) {
-          self.$(".poster-image-placeholder img").remove();
-          self.$("#poster_image_path").val(response);
-          self.$(".form-poster-img img").remove();
-          self.$(".poster-image-placeholder").hide();
-          self.$(".form-poster-img").prepend('<img src="' + response + '" class="poster-img poster-img-med" />');
+          if (!response.error) {
+            self.$(".poster-image-placeholder").find('.input-error').remove();
+            self.$(".poster-image-placeholder img").remove();
+            
+            self.$("#poster_image_path").val(response.image);
+            self.$("#poster_image_s_path").val(response.image_s);
+            self.$("#poster_image_m_path").val(response.image_m);
+            self.$("#poster_image_l_path").val(response.image_l);
+            
+            self.$(".form-poster-img img").remove();
+            self.$(".poster-image-placeholder").hide();
+
+            self.$(".form-poster-img").prepend('<img src="' + response.image + '" class="poster-img poster-img-med" />');
+          } else {
+            console.log(response);
+            self.$(".poster-image-placeholder").show();
+            self.$(".poster-image-placeholder").html('<div class="input-error">' + response.error + '</div>');
+          }
         }
       });
     },
@@ -52,7 +66,10 @@ define([
           event_dates: $("#poster_event_dates").val(),
           address: $("#poster_address").val(),
           price: $("#poster_price").val(),
-          image: $("#poster_image_path").val()
+          image: $("#poster_image_path").val(),
+          image_s: $("#poster_image_s_path").val(),
+          image_m: $("#poster_image_m_path").val(),
+          image_l: $("#poster_image_l_path").val(),
         }, {
           error: function () {
             console.log("Something went wrong");

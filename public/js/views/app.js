@@ -40,9 +40,15 @@ define([
         posters.fetch({
           success: function (posters) {
             var html = postersView.render().el;
-            $(html).find("img").load(function () {
+            if ($(html).find("img").length > 0) {
               that.$el.html(html);
-            });
+            } else {
+              that.$el.html(html);
+            }
+          },
+          error: function (collection, response) {
+            console.log("Collection: ", collection);
+            console.log("Response: ", response);
           }
         });
       });
